@@ -1,7 +1,7 @@
 /* ============================================================
    Resume Studio — script.js
-   Faithful recreation of Canva "Purple & White Modern Student CV"
-   - Live real-time preview matching Canva template (Image 4 & Image 2)
+   Faithful recreation of Studio "Purple & White Modern Student CV"
+   - Live real-time preview matching Studio template (Image 4 & Image 2)
    - Profile photo upload with circular crop containment
    - Individual Section-by-Section Font Sizing & Typography Controls
    - Design Movement & Resizing (Photo, Capsule, Rays) with Drag & Sliders
@@ -33,7 +33,7 @@ const resumeAvatarImg = $('#resume-avatar-img');
 const resumePaper     = $('#resume-preview');
 const itemPill        = $('#canvas-item-pill');
 
-// Default Canva portrait image (matches Image 4)
+// Default Studio portrait image (matches Image 4)
 const DEFAULT_AVATAR_URL = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80';
 
 // ── Storage Keys ─────────────────────────────────────────────
@@ -142,7 +142,7 @@ const defaultElementStyles = {
   boldOverrides: {},
   italicOverrides: {},
 
-  // Design elements (Image 2 Canva geometry)
+  // Design elements (Image 2 Studio geometry)
   photoSize: 38,      // mm
   photoX: 22,         // mm
   photoY: 6.5,        // mm
@@ -170,7 +170,7 @@ function loadStylesFromStorage() {
         boldOverrides: { ...(saved.boldOverrides || {}) },
         italicOverrides: { ...(saved.italicOverrides || {}) }
       };
-      // Auto-upgrade older test dimensions to ensure Canva Image 2 connection
+      // Auto-upgrade older test dimensions to ensure Studio Image 2 connection
       if (elementStyles.pillWidth < 90) elementStyles.pillWidth = 98;
       if (elementStyles.photoX < 15) elementStyles.photoX = 22;
       if (elementStyles.raysWidth < 65) elementStyles.raysWidth = 78;
@@ -563,8 +563,8 @@ function initIndividualStyleControls() {
     applyStylesToPreview();
   });
 
-  // Snap to Canva Perfect Match (Image 2)
-  $('#btn-snap-canva')?.addEventListener('click', () => {
+  // Snap to Studio Perfect Match (Image 2)
+  $('#btn-snap-studio')?.addEventListener('click', () => {
     elementStyles.photoSize = 38;
     elementStyles.photoX = 22;
     elementStyles.photoY = 6.5;
@@ -644,7 +644,7 @@ function updateGizmo() {
   gizmo.classList.add('active');
 }
 
-// ── Direct Cursor Move & Resize on Canvas (Canva-style Interaction) ──
+// ── Direct Cursor Move & Resize on Canvas (Studio-style Interaction) ──
 function initCanvasDrag() {
   const avatarFrame = $('#avatar-photo-frame');
   const pillEl      = $('#lavender-pill');
@@ -1270,7 +1270,7 @@ function initMainLocationAutocomplete() {
 }
 
 // ══════════════════════════════════════════════════════════════
-// ████████  LIVE RESUME PREVIEW (FAITHFUL TO CANVA IMAGE 4) ████████
+// ████████  LIVE RESUME PREVIEW (FAITHFUL TO STUDIO IMAGE 4) ████████
 // ══════════════════════════════════════════════════════════════
 
 function updatePreview() {
@@ -1565,7 +1565,7 @@ function init() {
   initMainLocationAutocomplete();
   initIndividualStyleControls();
 
-  // Restore saved data or show default Canva template
+  // Restore saved data or show default Studio template
   const savedData = loadFromStorage();
   if (savedData && Object.keys(savedData).length > 0) {
     restoreFormData(savedData);
