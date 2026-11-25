@@ -35,23 +35,28 @@ ResumeStudio is engineered with a distinctive, high-end editorial aesthetic desi
 * **Clean Structured Right Panel**: Generous whitespace dedicated to **About Me**, **Skills**, **Languages**, and **Projects**.
 
 ```
-┌──────────────────────────────┬───────────────────────────────────────────┐
-│  JOHN                        │         ╭───────────────╮  \ \ \ \ \ \    │
-│  HANERY                      │         │  (📷 Photo)   │   \ \ \ \ \ \   │
-│  [ STUDENT ]                 │  ───────╯   (Lavender)  ╰──────────────── │
-│                              │                                           │
-│  EDUCATION:                  │  ABOUT ME:                                │
-│  • Major / Degree            │  Dedicated student passionate about ...   │
-│    University | Year         │                                           │
-│                              │  SKILLS:                                  │
-│  EXPERIENCE:                 │  • Python                                 │
-│  • Role / Company            │  • Web Development                       │
-│                              │                                           │
-│  CONTACT ME:                 │  LANGUAGE:                                │
-│  📞 Phone                    │  • English • Spanish                      │
-│  ✉️ Email                    │                                           │
-│  📍 City, Country            │  PROJECTS:                                │
-└──────────────────────────────┴───────────────────────────────────────────┘
+┌──────────────────────────────────┬────────────────────────────────────────────────────┐
+│  JOHN HANERY                     │         ╭────────────────╮  \ \ \ \ \ \ \ \        │
+│  [ FULL STACK DEVELOPER ]        │         │ (Profile Photo)│   \ \ \ \ \ \ \ \       │
+│                                  │  ───────╯   (Lavender)   ╰─────────────────────    │
+│  EDUCATION:                      │  ABOUT ME:                                         │
+│  • B.Tech Computer Science       │  Dedicated software engineer specializing in       │
+│    Chanakya University | 2024    │  high-performance web apps & modern systems.       │
+│  • Higher Secondary (PCM)        │                                                    │
+│    Delhi Public School | 2020    │  SKILLS:                                           │
+│                                  │  • Languages: TypeScript, Python, JavaScript       │
+│  EXPERIENCE:                     │  • Frontend: React, Next.js, HTML5, CSS3, Tailwind │
+│  • Software Engineer Intern      │  • Backend & DB: Node.js, Express, PostgreSQL      │
+│    TechNova Labs | 2023-2024     │  • DevOps & Tools: Git, Docker, AWS, REST APIs     │
+│  • Frontend Lead Developer       │                                                    │
+│    Developer Club | 2022-2023    │  PROJECTS:                                         │
+│                                  │  • Drone Telemetry Station: Real-time UI control   │
+│  CONTACT:                        │  • ResumeStudio Platform: ATS-optimized builder    │
+│  • Tel: +1 (555) 234-5678        │                                                    │
+│  • Mail: john.hanery@email.com   │  LANGUAGES:                                        │
+│  • Loc: San Francisco, CA, USA   │  • English (Native)   • Spanish (Professional)     │
+│  • Web: github.com/johnhanery    │  • German (Conversational)                         │
+└──────────────────────────────────┴────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -61,8 +66,8 @@ ResumeStudio is engineered with a distinctive, high-end editorial aesthetic desi
 ### 🖱️ Direct Cursor Manipulation
 - **Freeform Move**: Select any graphic element (**Profile Photo**, **Lavender Capsule**, **Sunburst Rays**) and reposition it anywhere across the canvas directly with your mouse.
 - **Interactive Transform Gizmo**: Hover and drag corner or edge handles to interactively scale, widen, or compress element dimensions in real time.
-- **Directional Nudges**: Built-in 1-click floating pill directional controls (`◀`, `▶`, `▲`, `▼`) for sub-millimeter fine-tuning.
-- **✨ Snap to Studio Layout**: One-click restore button returns all graphics to optimal default alignment.
+- **Directional Nudges**: Built-in floating controls (`◀`, `▶`, `▲`, `▼`) for sub-millimeter fine-tuning.
+- **Precision Alignment**: Calibrated geometry guarantees seamless, gap-free connection between rays and header capsule.
 
 ### 🔠 Individual Section-by-Section Typography
 - **Independent Sizing**: Adjust font size for specific elements (**Candidate Name**, **Title**, **Section Headings**, **About Me**, **Skills**, **Education**, **Experience**, **Languages**, **Projects**, or **Contact**) without scaling the entire document.
