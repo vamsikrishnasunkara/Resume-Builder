@@ -580,7 +580,7 @@ function initIndividualStyleControls() {
     elementStyles.raysY = -4;
 
     applyStylesToPreview();
-    showToast('✨ Snapped design to exact Canva Image 2 alignment!');
+    showToast('✨ Snapped design to default studio layout!');
   });
 
   // Directional Nudge / Move with Cursor Clicks on Floating Pill
@@ -1518,7 +1518,7 @@ function showToast(msg, type = '') {
 
 // ── Clear / Reset Resume ─────────────────────────────────────
 function clearResume() {
-  if (!confirm('Clear all resume data and reset to the default Canva template? This cannot be undone.')) {
+  if (!confirm('Clear all resume data and reset to the default template? This cannot be undone.')) {
     return;
   }
   localStorage.removeItem(STORAGE_KEY);
