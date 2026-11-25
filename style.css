@@ -925,7 +925,7 @@ input, textarea, select { font: inherit; }
   flex-shrink: 0;
 }
 
-/* Radiating Sunburst Rays in Top-Right Corner (Overlaps & meets capsule like Image 2) */
+/* Radiating Sunburst Rays in Top-Right Corner (Overlaps & meets capsule seamlessly) */
 .sunburst-rays {
   position: absolute;
   top: var(--rv-sunburst-top, -4mm);
@@ -936,6 +936,7 @@ input, textarea, select { font: inherit; }
   background: transparent;
   cursor: move !important;
   z-index: 1 !important;
+  overflow: visible !important;
 }
 
 /* Lavender Pill / Capsule (Stretches across to seamlessly connect with rays!) */
