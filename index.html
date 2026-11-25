@@ -28,17 +28,10 @@
         <button type="button" class="template-dot" data-theme="rose" title="Rose" aria-label="Rose theme"></button>
         <button type="button" class="template-dot" data-theme="slate" title="Slate" aria-label="Slate theme"></button>
       </div>
-      <span class="saved-status" id="saved-status" aria-live="polite">Your resume is saved on this device</span>
       <button class="button button-ghost" id="clear-btn" type="button">🗑 Clear</button>
       <button class="button button-primary" id="print-button" type="button">↗ Download / Print</button>
     </div>
   </header>
-
-  <!-- ═══════════════ MOTIVATIONAL QUOTE BAR ═════════════════ -->
-  <div class="quote-bar" aria-live="polite">
-    <span id="quote-text">"Your resume is the first chapter of your success story."</span>
-    <strong id="quote-author">— Resume Studio</strong>
-  </div>
 
   <!-- ═══════════════ WORKSPACE ════════════════════════════ -->
   <main class="workspace">
@@ -48,7 +41,7 @@
       <div class="editor-heading">
         <p class="eyebrow">YOUR CAREER, CLEARLY PRESENTED</p>
         <h1 id="editor-heading">Build your resume</h1>
-        <p class="intro">Fill in your details below — the live preview updates instantly. Click any section on the preview to customize its specific size and style.</p>
+        <p class="intro">Fill in your details below — live preview updates in real time.</p>
         <div class="progress-wrap">
           <div class="progress-label"><span>Profile completeness</span><span id="progress-pct">0%</span></div>
           <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
@@ -124,12 +117,18 @@
           <div class="section-body">
             <!-- Profile Photo Upload -->
             <div class="avatar-upload-wrap" id="avatar-upload-wrap" role="button" tabindex="0" aria-label="Upload profile photo">
-              <img class="avatar-preview-img" id="avatar-preview-img"
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
-                alt="Profile photo preview">
+              <div class="avatar-thumb-circle">
+                <img class="avatar-preview-img" id="avatar-preview-img" src="" alt="" style="display: none;">
+                <div class="avatar-thumb-placeholder" id="avatar-thumb-placeholder">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                  <span>Photo</span>
+                </div>
+              </div>
               <div class="avatar-upload-text">
-                <strong>📷 Add profile photo</strong>
-                <span>Click to upload a photo (optional, max 2 MB)</span>
+                <strong>Profile Photo</strong>
+                <span>Click to upload photo</span>
               </div>
               <input type="file" id="avatar-file-input" accept="image/*">
             </div>
@@ -293,8 +292,6 @@
             <button class="add-button" type="button" data-add="project">＋ Add project</button>
           </div>
         </section>
-
-        <p class="privacy-note">🔒 Your information stays only in this browser — never sent to any server.</p>
       </form>
     </section>
 
@@ -484,9 +481,13 @@
 
               <!-- Circular profile photo frame with dark border -->
               <div class="avatar-photo-frame selectable-item draggable-design" id="avatar-photo-frame" data-target="photo" title="Click or drag to move profile photo">
-                <img id="resume-avatar-img"
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
-                  alt="Profile photo">
+                <img id="resume-avatar-img" src="" alt="" style="display: none;">
+                <div class="avatar-frame-placeholder" id="avatar-frame-placeholder">
+                  <svg class="avatar-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                  <span class="avatar-text">Profile<br>Photo</span>
+                </div>
               </div>
 
               <!-- Interactive Transform Gizmo for Cursor Drag & Resize -->

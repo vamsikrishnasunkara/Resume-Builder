@@ -248,19 +248,10 @@ input, textarea, select { font: inherit; }
 .button-ghost { background: var(--clr-surface-2); color: var(--clr-text-2); border: 1px solid var(--clr-border); }
 .button-ghost:hover { background: var(--clr-brand-bg); color: var(--clr-brand); border-color: var(--clr-brand-light); }
 
-/* ══ Motivational Quote Bar ═════════════════════════════════ */
-.quote-bar {
-  background: linear-gradient(90deg, var(--rv-sidebar-bg), var(--clr-brand));
-  color: rgba(255, 255, 255, 0.95); font-size: 12px; font-weight: 500; font-style: italic;
-  padding: 6px 24px; display: flex; align-items: center; justify-content: center;
-  gap: 8px; flex-shrink: 0; text-align: center;
-}
-.quote-bar strong { font-style: normal; opacity: 0.75; font-size: 11px; }
-
 /* ══ Workspace Layout ═══════════════════════════════════════ */
 .workspace {
   display: grid; grid-template-columns: var(--editor-w) 1fr;
-  flex: 1; overflow: hidden; height: calc(100dvh - var(--topbar-h) - 30px);
+  flex: 1; overflow: hidden; height: calc(100dvh - var(--topbar-h));
 }
 
 /* ══ Editor (Left Column) ═══════════════════════════════════ */
@@ -399,10 +390,32 @@ input, textarea, select { font: inherit; }
   border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition);
 }
 .avatar-upload-wrap:hover { background: var(--clr-brand-bg); border-color: var(--clr-brand); }
-.avatar-preview-img {
-  width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
-  border: 2.5px solid var(--clr-brand); box-shadow: 0 2px 8px rgba(33, 9, 47, 0.15);
+
+.avatar-thumb-circle {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 2px solid var(--clr-brand, #6B3687);
+  box-shadow: 0 2px 8px rgba(33, 9, 47, 0.15);
+  background: #ffffff; overflow: hidden; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; box-sizing: border-box;
 }
+.avatar-thumb-circle img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.avatar-thumb-placeholder {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1px;
+  background: var(--clr-brand-bg, rgba(107, 54, 135, 0.08));
+  color: var(--clr-brand, #6B3687); text-align: center; user-select: none;
+}
+.avatar-thumb-placeholder svg {
+  width: 16px; height: 16px; opacity: 0.85; flex-shrink: 0;
+}
+.avatar-thumb-placeholder span {
+  font-family: var(--font-head, 'Montserrat', sans-serif);
+  font-size: 8px; font-weight: 700; line-height: 1; text-transform: uppercase;
+  color: var(--clr-brand, #6B3687);
+}
+
 .avatar-upload-text { font-size: 12.5px; color: var(--clr-text-2); line-height: 1.4; display: flex; flex-direction: column; gap: 2px; }
 .avatar-upload-text strong { color: var(--clr-brand); font-weight: 700; font-size: 13px; }
 #avatar-file-input { display: none; }
@@ -971,6 +984,49 @@ input, textarea, select { font: inherit; }
   pointer-events: auto !important;
   cursor: move !important;
   z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box;
+}
+
+.avatar-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-frame-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: #ffffff;
+  color: var(--rv-sidebar-bg, #21092F);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 3px;
+  user-select: none;
+}
+
+.avatar-frame-placeholder .avatar-icon {
+  width: 17px;
+  height: 17px;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.avatar-frame-placeholder .avatar-text {
+  font-family: var(--font-head, 'Montserrat', sans-serif);
+  font-size: 5.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+  color: var(--rv-sidebar-bg, #21092F);
 }
 
 .draggable-design {

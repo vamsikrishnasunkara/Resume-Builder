@@ -66,11 +66,31 @@ function debouncedSave() {
 
 function flashSavedIndicator() {
   if (!savedEl) return;
-  savedEl.textContent = '✓ Saved to browser';
+  savedEl.textContent = '✓ Saved';
   clearTimeout(savedEl._timer);
   savedEl._timer = setTimeout(() => {
-    savedEl.textContent = 'Your resume is saved on this device';
-  }, 2200);
+    savedEl.textContent = '';
+  }, 1800);
+}
+
+// ── Profile Photo Display Helper ─────────────────────────────
+function setAvatarDisplay(dataUrl) {
+  const leftImg = $('#avatar-preview-img');
+  const leftPh  = $('#avatar-thumb-placeholder');
+  const mainImg = $('#resume-avatar-img');
+  const mainPh  = $('#avatar-frame-placeholder');
+
+  if (dataUrl) {
+    if (leftImg) { leftImg.src = dataUrl; leftImg.style.display = 'block'; }
+    if (leftPh)  { leftPh.style.display = 'none'; }
+    if (mainImg) { mainImg.src = dataUrl; mainImg.style.display = 'block'; }
+    if (mainPh)  { mainPh.style.display = 'none'; }
+  } else {
+    if (leftImg) { leftImg.src = ''; leftImg.style.display = 'none'; }
+    if (leftPh)  { leftPh.style.display = 'flex'; }
+    if (mainImg) { mainImg.src = ''; mainImg.style.display = 'none'; }
+    if (mainPh)  { mainPh.style.display = 'flex'; }
+  }
 }
 
 // ── Debounce Helper ──────────────────────────────────────────
@@ -936,9 +956,7 @@ function initAvatarUpload() {
     reader.onload = ev => {
       const dataUrl = ev.target.result;
       currentAvatarDataUrl = dataUrl;
-
-      if (avatarPreviewImg) avatarPreviewImg.src = dataUrl;
-      if (resumeAvatarImg)  resumeAvatarImg.src = dataUrl;
+      setAvatarDisplay(dataUrl);
 
       const stored = loadFromStorage();
       stored.avatarDataUrl = dataUrl;
@@ -1194,8 +1212,9 @@ function restoreFormData(data) {
 
   if (data.avatarDataUrl) {
     currentAvatarDataUrl = data.avatarDataUrl;
-    if (avatarPreviewImg) avatarPreviewImg.src = data.avatarDataUrl;
-    if (resumeAvatarImg)  resumeAvatarImg.src = data.avatarDataUrl;
+    setAvatarDisplay(data.avatarDataUrl);
+  } else {
+    setAvatarDisplay('');
   }
 }
 
@@ -1307,13 +1326,7 @@ function updatePreview() {
   }
 
   // ── 3. Profile Photo ──
-  if (resumeAvatarImg) {
-    if (data.avatarDataUrl) {
-      resumeAvatarImg.src = data.avatarDataUrl;
-    } else {
-      resumeAvatarImg.src = DEFAULT_AVATAR_URL;
-    }
-  }
+  setAvatarDisplay(data.avatarDataUrl || currentAvatarDataUrl);
 
   // ── 4. Education in Left Sidebar ──
   const eduEl = $('#preview-education');
