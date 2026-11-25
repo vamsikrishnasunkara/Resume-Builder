@@ -87,15 +87,15 @@
   --rv-proj-title-size:       8.5pt;
   --rv-proj-desc-size:        7.5pt;
 
-  /* ── Design Elements Position & Dimensions (Exact Studio Image 2 Alignment) ── */
-  --rv-pill-width:        98mm;
-  --rv-pill-height:       35mm;
-  --rv-pill-top:          8mm;
-  --rv-pill-left:         -12mm;
+  /* ── Design Elements Position & Dimensions (Exact Studio Image 1 Alignment) ── */
+  --rv-pill-width:        102mm;
+  --rv-pill-height:       37.8mm;
+  --rv-pill-top:          9.8mm;
+  --rv-pill-left:         -1.6mm;
 
-  --rv-avatar-size:       38mm;
-  --rv-avatar-top:        6.5mm;
-  --rv-avatar-left:       22mm;
+  --rv-avatar-size:       34mm;
+  --rv-avatar-top:        10.2mm;
+  --rv-avatar-left:       23.2mm;
 
   --rv-sunburst-width:    78mm;
   --rv-sunburst-height:   56mm;
@@ -941,12 +941,12 @@ input, textarea, select { font: inherit; }
 /* Lavender Pill / Capsule (Stretches across to seamlessly connect with rays!) */
 .lavender-pill {
   position: absolute;
-  top: var(--rv-pill-top, 8mm);
-  left: var(--rv-pill-left, -12mm);
-  width: var(--rv-pill-width, 98mm);
-  height: var(--rv-pill-height, 35mm);
+  top: var(--rv-pill-top, 9.8mm);
+  left: var(--rv-pill-left, -1.6mm);
+  width: var(--rv-pill-width, 102mm);
+  height: var(--rv-pill-height, 37.8mm);
   background: var(--rv-pill-bg, #d5bee8);
-  border-radius: 0 calc(var(--rv-pill-height, 35mm) / 2) calc(var(--rv-pill-height, 35mm) / 2) 0;
+  border-radius: 0 calc(var(--rv-pill-height, 37.8mm) / 2) calc(var(--rv-pill-height, 37.8mm) / 2) 0;
   border: 3.5px solid #ffffff;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45), 0 3px 14px rgba(33, 9, 47, 0.12);
   pointer-events: auto !important;
@@ -958,10 +958,10 @@ input, textarea, select { font: inherit; }
 /* Circular Profile Photo Frame with crisp dark outline (Always on top for easy clicking) */
 .avatar-photo-frame {
   position: absolute;
-  top: var(--rv-avatar-top, 6.5mm);
-  left: var(--rv-avatar-left, 22mm);
-  width: var(--rv-avatar-size, 38mm);
-  height: var(--rv-avatar-size, 38mm);
+  top: var(--rv-avatar-top, 10.2mm);
+  left: var(--rv-avatar-left, 23.2mm);
+  width: var(--rv-avatar-size, 34mm);
+  height: var(--rv-avatar-size, 34mm);
   border-radius: 50%;
   border: 3px solid var(--rv-sidebar-bg, #21092F);
   box-shadow: 0 4px 16px rgba(33, 9, 47, 0.25);

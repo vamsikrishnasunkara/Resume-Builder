@@ -142,15 +142,15 @@ const defaultElementStyles = {
   boldOverrides: {},
   italicOverrides: {},
 
-  // Design elements (Image 2 Studio geometry)
-  photoSize: 38,      // mm
-  photoX: 22,         // mm
-  photoY: 6.5,        // mm
+  // Design elements (Image 1 Connected Studio geometry)
+  photoSize: 34,      // mm
+  photoX: 23.2,       // mm
+  photoY: 10.2,       // mm
 
-  pillWidth: 98,      // mm (stretches to touch sunburst lines)
-  pillHeight: 35,     // mm
-  pillX: -12,         // mm
-  pillY: 8,           // mm
+  pillWidth: 102,     // mm (stretches seamlessly to touch sunburst lines)
+  pillHeight: 37.8,   // mm
+  pillX: -1.6,        // mm
+  pillY: 9.8,         // mm
 
   raysWidth: 78,      // mm
   raysHeight: 56,     // mm
@@ -170,9 +170,14 @@ function loadStylesFromStorage() {
         boldOverrides: { ...(saved.boldOverrides || {}) },
         italicOverrides: { ...(saved.italicOverrides || {}) }
       };
-      // Auto-upgrade older test dimensions to ensure Studio Image 2 connection
-      if (elementStyles.pillWidth < 90) elementStyles.pillWidth = 98;
-      if (elementStyles.photoX < 15) elementStyles.photoX = 22;
+      // Auto-upgrade older test dimensions to ensure seamless connection
+      if (elementStyles.pillX < -5 || !elementStyles.pillX) elementStyles.pillX = -1.6;
+      if (elementStyles.pillWidth < 100) elementStyles.pillWidth = 102;
+      if (elementStyles.pillHeight < 36) elementStyles.pillHeight = 37.8;
+      if (elementStyles.pillY < 9) elementStyles.pillY = 9.8;
+      if (elementStyles.photoSize > 36 || elementStyles.photoSize < 30) elementStyles.photoSize = 34;
+      if (elementStyles.photoX < 20) elementStyles.photoX = 23.2;
+      if (elementStyles.photoY < 8) elementStyles.photoY = 10.2;
       if (elementStyles.raysWidth < 65) elementStyles.raysWidth = 78;
     }
   } catch {}
@@ -563,16 +568,16 @@ function initIndividualStyleControls() {
     applyStylesToPreview();
   });
 
-  // Snap to Studio Perfect Match (Image 2)
+  // Snap to Studio Connected Layout
   $('#btn-snap-studio')?.addEventListener('click', () => {
-    elementStyles.photoSize = 38;
-    elementStyles.photoX = 22;
-    elementStyles.photoY = 6.5;
+    elementStyles.photoSize = 34;
+    elementStyles.photoX = 23.2;
+    elementStyles.photoY = 10.2;
 
-    elementStyles.pillWidth = 98;
-    elementStyles.pillHeight = 35;
-    elementStyles.pillX = -12;
-    elementStyles.pillY = 8;
+    elementStyles.pillWidth = 102;
+    elementStyles.pillHeight = 37.8;
+    elementStyles.pillX = -1.6;
+    elementStyles.pillY = 9.8;
 
     elementStyles.raysWidth = 78;
     elementStyles.raysHeight = 56;
@@ -580,7 +585,7 @@ function initIndividualStyleControls() {
     elementStyles.raysY = -4;
 
     applyStylesToPreview();
-    showToast('✨ Snapped design to default studio layout!');
+    showToast('✨ Snapped design to connected studio layout!');
   });
 
   // Directional Nudge / Move with Cursor Clicks on Floating Pill
