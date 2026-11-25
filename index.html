@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resume Studio — Canva Purple & White Modern Student CV builder with real-time live preview and interactive styling.">
+  <title>Resume Studio | Canva Purple Modern Student CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-theme="purple">
+
+  <!-- ═══════════════ TOPBAR ═══════════════════════════════ -->
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Resume Studio">
+      <span class="brand-mark">R</span>
+      <span>Resume<span class="brand-light">Studio</span></span>
+    </a>
+    <div class="topbar-actions">
+      <div class="template-switcher" title="Pick a color theme">
+        <span>Theme</span>
+        <button type="button" class="template-dot active" data-theme="purple" title="Purple (Canva Original)" aria-label="Purple theme"></button>
+        <button type="button" class="template-dot" data-theme="indigo" title="Indigo" aria-label="Indigo theme"></button>
+        <button type="button" class="template-dot" data-theme="emerald" title="Emerald" aria-label="Emerald theme"></button>
+        <button type="button" class="template-dot" data-theme="rose" title="Rose" aria-label="Rose theme"></button>
+        <button type="button" class="template-dot" data-theme="slate" title="Slate" aria-label="Slate theme"></button>
+      </div>
+      <span class="saved-status" id="saved-status" aria-live="polite">Your resume is saved on this device</span>
+      <button class="button button-ghost" id="clear-btn" type="button">🗑 Clear</button>
+      <button class="button button-primary" id="print-button" type="button">↗ Download / Print</button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ MOTIVATIONAL QUOTE BAR ═════════════════ -->
+  <div class="quote-bar" aria-live="polite">
+    <span id="quote-text">"Your resume is the first chapter of your success story."</span>
+    <strong id="quote-author">— Resume Studio</strong>
+  </div>
+
+  <!-- ═══════════════ WORKSPACE ════════════════════════════ -->
+  <main class="workspace">
+
+    <!-- ══════════ EDITOR PANEL (Left) ══════════════════════ -->
+    <section class="editor" aria-labelledby="editor-heading">
+      <div class="editor-heading">
+        <p class="eyebrow">YOUR CAREER, CLEARLY PRESENTED</p>
+        <h1 id="editor-heading">Build your resume</h1>
+        <p class="intro">Fill in your details below — the live preview updates instantly. Click any section on the preview to customize its specific size and style.</p>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Profile completeness</span><span id="progress-pct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+      </div>
+
+      <form id="resume-form" autocomplete="on" novalidate>
+
+        <!-- ── 🎨 Design & Layout Controls Accordion ────────── -->
+        <section class="form-section" id="styles-section" aria-labelledby="styles-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number" style="font-size:13px">🎨</span>
+              <div>
+                <h2 id="styles-heading">Design & Header Elements</h2>
+                <p>Move/resize photo, pill capsule, lines & spacing</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <div class="style-controls-grid">
+
+              <!-- Direct Cursor Manipulation Notice & Quick Selectors -->
+              <div class="cursor-drag-banner">
+                <span class="cdb-icon">🖱️</span>
+                <div style="flex:1">
+                  <strong>Direct Cursor Move & Resize:</strong>
+                  <p>Click any design element on the resume preview to move it anywhere with your cursor, or pull its handles to increase/decrease size!</p>
+                  <div class="cursor-quick-targets">
+                    <button type="button" class="cursor-target-btn active" data-target="photo">📷 Profile Photo</button>
+                    <button type="button" class="cursor-target-btn" data-target="pill">🟣 Lavender Capsule</button>
+                    <button type="button" class="cursor-target-btn" data-target="rays">☀️ Sunburst Rays</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Spacing Preset / Page Fit -->
+              <div class="style-control-row">
+                <div class="style-label-row">
+                  <span>Page Spacing (Fill A4)</span>
+                  <strong id="label-section-gap">Normal</strong>
+                </div>
+                <div class="spacing-preset-buttons">
+                  <button type="button" class="preset-btn" data-gap="3.5mm">Compact</button>
+                  <button type="button" class="preset-btn active" data-gap="5.5mm">Normal</button>
+                  <button type="button" class="preset-btn" data-gap="8.5mm">Spacious</button>
+                  <button type="button" class="preset-btn" data-gap="11.5mm">✨ Fill Page</button>
+                </div>
+              </div>
+
+              <!-- Quick Snap to Canva Match -->
+              <button type="button" class="btn-snap-canva" id="btn-snap-canva">
+                ✨ Snap Design to Canva Perfect Match (Image 2)
+              </button>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ── 01 · Personal Information ──────────────────── -->
+        <section class="form-section" aria-labelledby="personal-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">01</span>
+              <div>
+                <h2 id="personal-heading">Personal Information</h2>
+                <p>How employers can reach you</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <!-- Profile Photo Upload -->
+            <div class="avatar-upload-wrap" id="avatar-upload-wrap" role="button" tabindex="0" aria-label="Upload profile photo">
+              <img class="avatar-preview-img" id="avatar-preview-img"
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+                alt="Profile photo preview">
+              <div class="avatar-upload-text">
+                <strong>📷 Add profile photo</strong>
+                <span>Click to upload a photo (optional, max 2 MB)</span>
+              </div>
+              <input type="file" id="avatar-file-input" accept="image/*">
+            </div>
+
+            <div class="field-grid">
+              <label class="field field-full">
+                Full name
+                <input name="fullName" type="text" placeholder="e.g. S.Vamsi krishna" autocomplete="name">
+              </label>
+              <label class="field field-full">
+                Professional title
+                <input name="title" type="text" placeholder="e.g. STUDENT or ENGINEERING">
+              </label>
+              <label class="field">
+                Email
+                <input name="email" type="email" placeholder="you@example.com" autocomplete="email">
+              </label>
+              <label class="field">
+                Phone
+                <input name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel">
+              </label>
+              <label class="field">
+                📍 Location
+                <div class="autocomplete-wrap">
+                  <input name="location" type="text" placeholder="City, State, Country" autocomplete="off">
+                </div>
+              </label>
+              <label class="field">
+                LinkedIn
+                <input name="linkedin" type="text" placeholder="linkedin.com/in/yourname">
+              </label>
+              <label class="field field-full">
+                Portfolio / Website
+                <input name="website" type="text" placeholder="yourportfolio.com">
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── 02 · About Me / Summary ────────────────────── -->
+        <section class="form-section" aria-labelledby="summary-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">02</span>
+              <div>
+                <h2 id="summary-heading">About Me</h2>
+                <p>Professional summary displayed on your CV</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <label class="field field-full">
+              <div class="field-label-row">
+                <span>About Me / Bio</span>
+                <span class="char-count" aria-live="polite"></span>
+              </div>
+              <textarea name="summary" rows="4" data-maxchars="600"
+                placeholder="Write a short introduction about your experience, strengths, and goals."></textarea>
+              <span class="field-hint">Aim for 2–4 concise sentences. Appears directly under ABOUT ME on the right.</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- ── 03 · Education (Left Sidebar) ──────────────── -->
+        <section class="form-section" aria-labelledby="education-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">03</span>
+              <div>
+                <h2 id="education-heading">Education</h2>
+                <p>Your academic background — search real universities</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <div id="education-list" class="repeat-list"></div>
+            <button class="add-button" type="button" data-add="education">＋ Add education</button>
+          </div>
+        </section>
+
+        <!-- ── 04 · Experience (Left Sidebar) ─────────────── -->
+        <section class="form-section" aria-labelledby="experience-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">04</span>
+              <div>
+                <h2 id="experience-heading">Experience</h2>
+                <p>Work history or internships — appears in sidebar</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <div id="experience-list" class="repeat-list"></div>
+            <button class="add-button" type="button" data-add="experience">＋ Add experience</button>
+          </div>
+        </section>
+
+        <!-- ── 05 · Skills (Right Panel) ──────────────────── -->
+        <section class="form-section" aria-labelledby="skills-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">05</span>
+              <div>
+                <h2 id="skills-heading">Skills</h2>
+                <p>Tools and strengths you bring</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <label class="field field-full">
+              Your skills
+              <div class="skill-tags-input-wrap" id="skill-tags-wrap">
+                <input class="skill-tags-text-input" id="skill-text-input" type="text"
+                  placeholder="Type a skill and press Enter or comma…">
+              </div>
+              <span class="field-hint">Press Enter or , after each skill. Click suggestions below to add quickly.</span>
+            </label>
+            <div class="skill-suggestions" id="skill-suggestions"></div>
+          </div>
+        </section>
+
+        <!-- ── 06 · Languages (Right Panel) ───────────────── -->
+        <section class="form-section" aria-labelledby="languages-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">06</span>
+              <div>
+                <h2 id="languages-heading">Languages</h2>
+                <p>Languages you speak — appears in right panel</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <label class="field field-full">
+              Languages
+              <input name="languages" type="text" placeholder="e.g. Native English, Urdu, Spanish, Hindi, Telugu">
+              <span class="field-hint">Separate each language with a comma.</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- ── 07 · Projects (Right Panel) ────────────────── -->
+        <section class="form-section" aria-labelledby="projects-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">07</span>
+              <div>
+                <h2 id="projects-heading">Projects</h2>
+                <p>Show what you have built</p>
+              </div>
+            </div>
+            <span class="section-chevron">›</span>
+          </div>
+          <div class="section-body">
+            <div id="project-list" class="repeat-list"></div>
+            <button class="add-button" type="button" data-add="project">＋ Add project</button>
+          </div>
+        </section>
+
+        <p class="privacy-note">🔒 Your information stays only in this browser — never sent to any server.</p>
+      </form>
+    </section>
+
+    <!-- ══════════ PREVIEW PANEL (Right) ════════════════════ -->
+    <section class="preview-panel" aria-labelledby="preview-heading">
+      
+      <!-- Top Preview Toolbar -->
+      <div class="preview-toolbar">
+        <div>
+          <p class="eyebrow">LIVE PREVIEW</p>
+          <h2 id="preview-heading">Your resume</h2>
+        </div>
+        <div class="preview-toolbar-right">
+          <span class="ats-badge" id="ats-badge" title="ATS readiness">⚪ ATS: —</span>
+          <span class="paper-label">A4 · 210 × 297 mm</span>
+        </div>
+      </div>
+
+      <!-- ── Canva-style Element-by-Element Styling Bar ───── -->
+      <div class="quick-style-bar" id="quick-style-bar">
+        <!-- Target Selection Dropdown -->
+        <div class="quick-bar-item">
+          <span class="quick-bar-label">Edit Style of:</span>
+          <select id="target-element-select" class="quick-select target-select" title="Choose which item or section to resize">
+            <option value="name">Candidate Name</option>
+            <option value="title">Title Badge</option>
+            <option value="headings">Section Headings</option>
+            <option value="about">About Me Text</option>
+            <option value="skills">Skills Text</option>
+            <option value="education">Education Text</option>
+            <option value="experience">Experience Text</option>
+            <option value="languages">Languages Text</option>
+            <option value="projects">Projects Text</option>
+            <option value="contact">Contact Info</option>
+            <option value="photo">Profile Photo</option>
+            <option value="pill">Lavender Capsule</option>
+            <option value="rays">Sunburst Rays</option>
+            <option value="all">Whole Document</option>
+          </select>
+        </div>
+
+        <div class="quick-bar-divider"></div>
+
+        <!-- Target Size +/- Controls -->
+        <div class="quick-bar-item">
+          <span class="quick-bar-label">Size:</span>
+          <button type="button" class="quick-btn" id="qbtn-target-down" title="Decrease size of selected element">A−</button>
+          <span class="quick-badge" id="qbadge-target-size">26 pt</span>
+          <button type="button" class="quick-btn" id="qbtn-target-up" title="Increase size of selected element">A+</button>
+        </div>
+
+        <div class="quick-bar-divider"></div>
+
+        <!-- Target Style Controls: Bold, Italic, Uppercase -->
+        <div class="quick-bar-item">
+          <button type="button" class="quick-btn" id="qbtn-target-bold" title="Toggle bold for selected element"><b>B</b></button>
+          <button type="button" class="quick-btn" id="qbtn-target-italic" title="Toggle italic for selected element"><i>I</i></button>
+        </div>
+
+        <div class="quick-bar-divider"></div>
+
+        <!-- Fit Page / Spacing Presets -->
+        <div class="quick-bar-item">
+          <span class="quick-bar-label">Fit Page:</span>
+          <button type="button" class="quick-btn" id="qbtn-gap-tight" title="Compact spacing">Compact</button>
+          <button type="button" class="quick-btn active" id="qbtn-gap-normal" title="Normal spacing">Normal</button>
+          <button type="button" class="quick-btn" id="qbtn-gap-fill" title="Expand spacing to fill entire A4 page">✨ Fill Page</button>
+        </div>
+
+        <div class="quick-bar-divider"></div>
+
+        <!-- Font Family Selector -->
+        <div class="quick-bar-item">
+          <select id="quick-font-select" class="quick-select" title="Change typography font">
+            <option value="'Montserrat', sans-serif">Montserrat</option>
+            <option value="'Poppins', sans-serif">Poppins</option>
+            <option value="'Inter', sans-serif">Inter</option>
+            <option value="'Open Sans', sans-serif">Open Sans</option>
+            <option value="'Playfair Display', serif">Playfair</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── Contextual Floating Action Pill (Appears when clicking on canvas items) ── -->
+      <div class="canvas-item-pill" id="canvas-item-pill">
+        <span class="cip-tag" id="cip-tag">Name</span>
+        <button type="button" class="cip-btn" id="cip-btn-down" title="Decrease font or element size">A−</button>
+        <span class="cip-val" id="cip-val">26 pt</span>
+        <button type="button" class="cip-btn" id="cip-btn-up" title="Increase font or element size">A+</button>
+        <div class="cip-divider"></div>
+        <!-- Direct Nudge/Move with Cursor Click -->
+        <button type="button" class="cip-btn cip-nudge" id="cip-move-left" title="Move Left (1mm)">◀</button>
+        <button type="button" class="cip-btn cip-nudge" id="cip-move-right" title="Move Right (1mm)">▶</button>
+        <button type="button" class="cip-btn cip-nudge" id="cip-move-up" title="Move Up (1mm)">▲</button>
+        <button type="button" class="cip-btn cip-nudge" id="cip-move-down" title="Move Down (1mm)">▼</button>
+        <div class="cip-divider"></div>
+        <!-- Quick Switch Between Designs -->
+        <div class="cip-design-switcher" id="cip-design-switcher">
+          <button type="button" class="cip-tab-btn" data-target="photo" title="Select Profile Photo">📷 Photo</button>
+          <button type="button" class="cip-tab-btn" data-target="pill" title="Select Lavender Capsule">🟣 Capsule</button>
+          <button type="button" class="cip-tab-btn" data-target="rays" title="Select Sunburst Lines">☀️ Lines</button>
+        </div>
+        <button type="button" class="cip-btn" id="cip-btn-bold" title="Bold"><b>B</b></button>
+        <button type="button" class="cip-btn" id="cip-btn-italic" title="Italic"><i>I</i></button>
+      </div>
+
+      <div class="paper-wrap">
+        <!-- ════ RESUME PAPER (EXACT CANVA A4 TEMPLATE) ═════ -->
+        <article class="resume-paper" id="resume-preview" aria-label="Live resume preview">
+
+          <!-- ── ANGLED PURPLE BACKDROP WITH DROP SHADOW ── -->
+          <div class="sidebar-angled-backdrop" aria-hidden="true">
+            <div class="sidebar-angled-polygon"></div>
+          </div>
+
+          <!-- ── LEFT SIDEBAR (Dark Purple Content) ──────── -->
+          <aside class="resume-sidebar-content">
+            <!-- Candidate Name -->
+            <div class="sidebar-name selectable-item" id="preview-name" data-target="name" title="Click to adjust candidate name">JOHN<br>HANERY</div>
+
+            <!-- Title Highlight Bar -->
+            <div class="sidebar-title-bar-wrap">
+              <span class="sidebar-title-bar selectable-item" id="preview-title-badge" data-target="title" title="Click to adjust title badge">STUDENT</span>
+            </div>
+
+            <!-- Sidebar Sections Wrapper -->
+            <div class="sidebar-sections-wrapper">
+
+              <!-- EDUCATION -->
+              <section class="sidebar-section selectable-item" id="sidebar-education-sec" data-target="education" title="Click to adjust education font size & style">
+                <h3 class="sidebar-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">EDUCATION:</h3>
+                <div class="sidebar-list" id="preview-education">
+                  <!-- Dynamically populated -->
+                </div>
+              </section>
+
+              <!-- EXPERIENCE -->
+              <section class="sidebar-section selectable-item" id="sidebar-experience-sec" data-target="experience" title="Click to adjust experience font size & style">
+                <h3 class="sidebar-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">EXPERIENCE:</h3>
+                <div class="sidebar-list" id="preview-experience">
+                  <!-- Dynamically populated -->
+                </div>
+              </section>
+
+              <!-- CONTACT ME -->
+              <section class="sidebar-section sidebar-contact-section selectable-item" id="sidebar-contact-sec" data-target="contact" title="Click to adjust contact font size & style">
+                <h3 class="sidebar-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">CONTACT ME:</h3>
+                <div class="sidebar-contact-list" id="preview-contact">
+                  <!-- Dynamically populated -->
+                </div>
+              </section>
+
+            </div>
+          </aside>
+
+          <!-- ── RIGHT MAIN PANEL (White Content) ────────── -->
+          <div class="resume-main-content">
+
+            <!-- Top Header Zone: Rays + Lavender Capsule + Photo -->
+            <header class="resume-header-graphic">
+              <!-- Sunburst radiating rays SVG in top right corner -->
+              <svg class="sunburst-rays selectable-item draggable-design" id="sunburst-rays-svg" data-target="rays" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none" title="Click or drag to adjust radiating lines">
+                <g class="sunburst-lines" stroke="#21092F" stroke-width="1.8" opacity="0.85">
+                  <line x1="240" y1="0" x2="0"   y2="10" />
+                  <line x1="240" y1="0" x2="0"   y2="25" />
+                  <line x1="240" y1="0" x2="0"   y2="42" />
+                  <line x1="240" y1="0" x2="0"   y2="60" />
+                  <line x1="240" y1="0" x2="0"   y2="82" />
+                  <line x1="240" y1="0" x2="0"   y2="108" />
+                  <line x1="240" y1="0" x2="0"   y2="138" />
+                  <line x1="240" y1="0" x2="22"  y2="180" />
+                  <line x1="240" y1="0" x2="52"  y2="180" />
+                  <line x1="240" y1="0" x2="88"  y2="180" />
+                  <line x1="240" y1="0" x2="128" y2="180" />
+                  <line x1="240" y1="0" x2="168" y2="180" />
+                  <line x1="240" y1="0" x2="208" y2="180" />
+                  <line x1="240" y1="0" x2="240" y2="180" />
+                </g>
+              </svg>
+
+              <!-- Lavender pill / capsule -->
+              <div class="lavender-pill selectable-item draggable-design" id="lavender-pill" data-target="pill" title="Click or drag to move/stretch lavender capsule"></div>
+
+              <!-- Circular profile photo frame with dark border -->
+              <div class="avatar-photo-frame selectable-item draggable-design" id="avatar-photo-frame" data-target="photo" title="Click or drag to move profile photo">
+                <img id="resume-avatar-img"
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+                  alt="Profile photo">
+              </div>
+
+              <!-- Interactive Transform Gizmo for Cursor Drag & Resize -->
+              <div class="design-transform-gizmo" id="design-transform-gizmo" aria-hidden="true">
+                <div class="gizmo-frame" id="gizmo-frame" title="Click and drag with cursor to move anywhere"></div>
+                <div class="gizmo-move-handle" id="gizmo-move-handle" title="Click and drag with cursor to move anywhere">
+                  <span class="gizmo-move-icon">✥</span>
+                  <span class="gizmo-label" id="gizmo-label">Profile Photo</span>
+                  <span class="gizmo-hint">(Drag to move)</span>
+                </div>
+                <!-- 4 Corner Resize Handles (Drag cursor to decrease / increase size) -->
+                <div class="gizmo-handle gh-nw" data-handle="nw" title="Drag cursor to resize"></div>
+                <div class="gizmo-handle gh-ne" data-handle="ne" title="Drag cursor to resize"></div>
+                <div class="gizmo-handle gh-se" data-handle="se" title="Drag cursor to resize"></div>
+                <div class="gizmo-handle gh-sw" data-handle="sw" title="Drag cursor to resize"></div>
+                <!-- Edge stretch handles -->
+                <div class="gizmo-handle gh-e"  data-handle="e"  title="Drag cursor to stretch width"></div>
+                <div class="gizmo-handle gh-s"  data-handle="s"  title="Drag cursor to resize height"></div>
+              </div>
+            </header>
+
+            <!-- Main Body Sections -->
+            <div class="resume-main-body">
+
+              <!-- ABOUT ME -->
+              <section class="main-section selectable-item" id="main-about-sec" data-target="about" title="Click to adjust About Me font size & style">
+                <h3 class="main-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">ABOUT ME:</h3>
+                <p class="main-about-text" id="preview-summary">
+                  places endless Once stars joined loved adventures new who sharing stars away brought who the brought and day of dog curious endless time discover possibilities treasures brought there upon land day of dog curious endless time discover
+                </p>
+              </section>
+
+              <!-- SKILLS -->
+              <section class="main-section selectable-item" id="main-skills-sec" data-target="skills" title="Click to adjust Skills font size & style">
+                <h3 class="main-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">SKILLS:</h3>
+                <ul class="main-bullet-list" id="preview-skills">
+                  <!-- Dynamically populated -->
+                </ul>
+              </section>
+
+              <!-- LANGUAGE -->
+              <section class="main-section selectable-item" id="main-language-sec" data-target="languages" title="Click to adjust Languages font size & style">
+                <h3 class="main-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">LANGUAGE:</h3>
+                <ul class="main-bullet-list" id="preview-languages">
+                  <!-- Dynamically populated -->
+                </ul>
+              </section>
+
+              <!-- PROJECTS (optional) -->
+              <section class="main-section selectable-item" id="main-projects-sec" data-target="projects" title="Click to adjust Projects font size & style">
+                <h3 class="main-section-title selectable-item" data-target="headings" title="Click to adjust Section Headings">PROJECTS:</h3>
+                <div class="main-projects-list" id="preview-projects">
+                  <!-- Dynamically populated -->
+                </div>
+              </section>
+
+            </div><!-- /resume-main-body -->
+          </div><!-- /resume-main-content -->
+
+        </article>
+      </div><!-- /paper-wrap -->
+
+      <p class="preview-tip">💡 <strong>Click any section</strong> on the resume to resize only that specific section. Drag the photo or capsule to reposition them.</p>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ REPEATABLE CARD TEMPLATES ══════════════ -->
+
+  <!-- Education card template -->
+  <template id="education-template">
+    <fieldset class="repeat-card">
+      <legend class="sr-only">Education entry</legend>
+      <div class="card-actions">
+        <button class="remove-button" type="button" aria-label="Remove education">×</button>
+      </div>
+      <div class="field-grid">
+        <label class="field field-full">
+          Degree / Qualification
+          <input data-field="degree" type="text" placeholder="e.g. 10TH or B.Sc. Computer Science">
+        </label>
+        <label class="field field-full">
+          🎓 School / Institution
+          <div class="autocomplete-wrap">
+            <input data-field="school" type="text" placeholder="e.g. KIRAN ENGLISH MEDIUM HIGH SCHOOL" autocomplete="off">
+          </div>
+        </label>
+        <label class="field">
+          Dates
+          <input data-field="dates" type="text" placeholder="2022 – 2025">
+        </label>
+        <label class="field">
+          📍 Location
+          <div class="autocomplete-wrap">
+            <input data-field="edu-location" type="text" placeholder="Tirupati, Andhra Pradesh, India" autocomplete="off">
+          </div>
+        </label>
+        <label class="field field-full">
+          Details <span class="optional">(optional)</span>
+          <textarea data-field="details" rows="2" placeholder="Relevant coursework, GPA, honors, or achievements"></textarea>
+        </label>
+      </div>
+    </fieldset>
+  </template>
+
+  <!-- Experience card template -->
+  <template id="experience-template">
+    <fieldset class="repeat-card">
+      <legend class="sr-only">Experience entry</legend>
+      <div class="card-actions">
+        <button class="remove-button" type="button" aria-label="Remove experience">×</button>
+      </div>
+      <div class="field-grid">
+        <label class="field field-full">
+          Company / Organisation
+          <input data-field="company" type="text" placeholder="e.g. GOOGLE or TECH CORP">
+        </label>
+        <label class="field field-full">
+          Position / Role
+          <input data-field="exp-role" type="text" placeholder="e.g. Junior Developer or Intern">
+        </label>
+        <label class="field">
+          Dates
+          <input data-field="exp-dates" type="text" placeholder="2023 – 2024">
+        </label>
+        <label class="field">
+          📍 Location
+          <div class="autocomplete-wrap">
+            <input data-field="exp-location" type="text" placeholder="City or Remote" autocomplete="off">
+          </div>
+        </label>
+        <label class="field field-full">
+          Key responsibilities
+          <textarea data-field="exp-desc" rows="3" placeholder="Key responsibilities and achievements"></textarea>
+        </label>
+      </div>
+    </fieldset>
+  </template>
+
+  <!-- Project card template -->
+  <template id="project-template">
+    <fieldset class="repeat-card">
+      <legend class="sr-only">Project entry</legend>
+      <div class="card-actions">
+        <button class="remove-button" type="button" aria-label="Remove project">×</button>
+      </div>
+      <div class="field-grid">
+        <label class="field field-full">
+          Project name
+          <input data-field="name" type="text" placeholder="e.g. Personal Portfolio Website">
+        </label>
+        <label class="field">
+          Your role
+          <input data-field="role" type="text" placeholder="e.g. Full-Stack Developer">
+        </label>
+        <label class="field">
+          Link <span class="optional">(optional)</span>
+          <input data-field="link" type="text" placeholder="github.com/you/project">
+        </label>
+        <label class="field field-full">
+          What you built
+          <textarea data-field="description" rows="3" placeholder="Describe what you built and the tools used."></textarea>
+        </label>
+      </div>
+    </fieldset>
+  </template>
+
+</body>
+</html>
